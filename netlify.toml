@@ -1,0 +1,25 @@
+# Netlify configuration
+# Netlify detects Next.js and installs its Next.js runtime (OpenNext adapter)
+# automatically. Do NOT add @netlify/plugin-nextjs manually unless you need to pin it.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Deploy previews / branch deploys never get indexed, regardless of env vars.
+[context.deploy-preview.environment]
+  NEXT_PUBLIC_ALLOW_INDEXING = "false"
+
+[context.branch-deploy.environment]
+  NEXT_PUBLIC_ALLOW_INDEXING = "false"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

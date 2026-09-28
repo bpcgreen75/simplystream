@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/*
+ * DESIGN TOKENS
+ * Brand colours are NOT defined here. They are injected as --brand-* CSS
+ * variables on <html> from config/brand.ts. This file maps them to Tailwind
+ * utilities, e.g. bg-primary, text-muted, border-border.
+ */
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-hover: var(--brand-primary-hover);
+  --color-on-primary: var(--brand-on-primary);
+  --color-secondary: var(--brand-secondary);
+  --color-accent: var(--brand-accent);
+  --color-background: var(--brand-background);
+  --color-surface: var(--brand-surface);
+  --color-surface-muted: var(--brand-surface-muted);
+  --color-text: var(--brand-text);
+  --color-muted: var(--brand-muted);
+  --color-inverse: var(--brand-inverse);
+  --color-success: var(--brand-success);
+  --color-success-soft: var(--brand-success-soft);
+  --color-warning: var(--brand-warning);
+  --color-warning-soft: var(--brand-warning-soft);
+  --color-border: var(--brand-border);
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  --shadow-float: 0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -20px rgb(15 23 42 / 0.28);
+}
+
+@layer base {
+  html {
+    background-color: var(--brand-background);
+    color: var(--brand-text);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Keep anchored sections clear of the sticky header. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+  :focus-visible {
+    outline: 3px solid var(--brand-primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Brand gradient text (used for the SimplyStream headline highlight). */
+.text-brand-gradient {
+  background-image: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Diagonal hatch for "paused" calendar cells; paired with icon + text, never colour alone. */
+.bg-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(100 116 139 / 0.1) 0 6px,
+    transparent 6px 12px
+  );
+}

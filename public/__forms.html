@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+  Netlify Forms detection file. DO NOT DELETE.
+  Netlify scans static HTML at deploy time to register forms. Forms rendered by
+  React aren't visible to that scan, so the early-access form is declared here.
+  Field names must match components/marketing/EarlyAccessForm.tsx.
+-->
+<html lang="en">
+  <head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>Forms</title></head>
+  <body>
+    <form name="early-access" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="early-access" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="first-name" />
+      <input type="email" name="email" />
+      <input type="text" name="brand" />
+    </form>
+  </body>
+</html>
